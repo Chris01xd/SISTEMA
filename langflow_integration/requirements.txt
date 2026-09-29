@@ -1,0 +1,8 @@
+# Langflow owns the LangChain versions in this separate Python 3.13 environment.
+# Do not combine with ai_module/requirements.txt (it pins LangChain 1.4).
+langflow==1.12.3
+scikit-learn>=1.5,<2
+xgboost>=2.1
+numpy>=1.26,<3
+joblib>=1.4
+pyarrow>=17

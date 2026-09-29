@@ -1,0 +1,14 @@
+# Standalone AI module (LangChain + LangGraph + digital twin). Imports nothing from backend/;
+# can run in its own venv or inside the backend container (whose versions are compatible).
+langchain==1.4.2
+langchain-anthropic==1.7.2   # default provider; install langchain-<provider> to use another one
+langgraph==1.2.12
+pydantic>=2.9,<3
+pydantic-settings>=2.5,<3
+pandas>=2.2,<4
+numpy>=1.26,<3
+scikit-learn>=1.5,<2
+xgboost>=2.1          # XGBoost model + Voting member (skipped with a logged reason if absent)
+joblib>=1.4
+pyarrow>=17
+pytest>=8

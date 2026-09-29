@@ -1,0 +1,10 @@
+# Optional: enables POST /api/v1/assistant/ask (the standalone LangChain module in
+# ../langchain_module). Without it the endpoint answers 501 and the rest of the API is
+# unaffected. Also needs ANTHROPIC_API_KEY (or another provider's key, see ASSISTANT_MODEL).
+#
+#   pip install -r requirements-assistant.txt
+langchain==1.4.2
+langchain-anthropic==1.7.2
+# Also used by the standalone ai_module (POST /api/v1/ai/invoke, /api/v1/digital-twin/*): LangGraph
+# orchestration. Already a dependency of langchain 1.x; pinned explicitly because ai_module uses it directly.
+langgraph==1.2.12

@@ -1,0 +1,671 @@
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
++ Initializing Langflow
++ Checking Environment
+2026-09-28T21:52:59.764608Z [warning  ] CORS: Using permissive defaults (all origins + credentials). Set LANGFLOW_CORS_ORIGINS for production. Stricter defaults in v2.0. service=langflow
+2026-09-28T21:52:59.764845Z [warning  ] CORS: wildcard origin ('*') is configured together with LANGFLOW_CORS_ALLOW_CREDENTIALS=true; disabling credentials because a wildcard origin with credentials enables cross-site credentialed requests (CSRF / token theft) and is invalid per the CORS spec. Set LANGFLOW_CORS_ORIGINS to explicit origins to keep credentials enabled. service=langflow
++ Starting Core Services
++ Connecting Database
++ Loading Components
++ Adding Starter Projects
+[09/28/26 16:53:09] INFO     HTTP Request: GET                  _client.py:1025
+                             https://pypi.org/pypi/langflow/jso                
+                             n "HTTP/1.1 200 OK"                               
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│  Welcome to Langflow                                                    │
+│                                                                         │
+│  * GitHub: Star for updates -> https://github.com/langflow-ai/langflow  │
+│  # Discord: Join for support -> https://discord.com/invite/EqksyE2EX9   │
+│                                                                         │
+│  We are not collecting anonymous usage data to improve Langflow.        │
+│  To contribute, set: DO_NOT_TRACK=false in your environment.            │
+│                                                                         │
+│  [OK] Open Langflow -> http://localhost:7860                            │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
++ Launching Langflow
+INFO:     Started server process [21496]
+INFO:     Waiting for application startup.
+[09/28/26 16:53:13] INFO     Context impl SQLiteImpl.          migration.py:210
+                    INFO     Will assume non-transactional     migration.py:213
+                             DDL.                                              
+                    INFO     Context impl SQLiteImpl.          migration.py:210
+                    INFO     Will assume non-transactional     migration.py:213
+                             DDL.                                              
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.schemas                      
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.tables                       
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.types                        
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.constraints                  
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.defaults                     
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.comments                     
+                    INFO     Context impl SQLiteImpl.          migration.py:210
+                    INFO     Will assume non-transactional     migration.py:213
+                             DDL.                                              
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.schemas                      
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.tables                       
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.types                        
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.constraints                  
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.defaults                     
+                    INFO     setting up autogenerate plugin      plugins.py:119
+                             alembic.autogenerate.comments                     
+2026-09-28T21:53:14.485737Z [error    ] Failed to start telemetry writer; transactions and vertex_build writes will use the legacy direct-write path: [WinError 87] El parámetro no es correcto service=langflow
+2026-09-28T21:53:37.177885Z [warning  ] Skipping starter project 'Research Translation Loop'; unavailable components: ArXivComponent service=langflow
+2026-09-28T21:53:37.395910Z [info     ] Initializing agentic global variables... service=langflow
+2026-09-28T21:53:37.396423Z [info     ] Initializing agentic global variables for all users... service=langflow
+2026-09-28T21:53:37.403465Z [info     ] Agentic variables initialization complete: 0 created, 3 skipped service=langflow
+[09/28/26 16:53:37] INFO     StreamableHTTP      streamable_http_manager.py:164
+                             session manager                                   
+                             started                                           
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:7860 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60533 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60535 - "GET /api/v1/flows/?get_all=true&remove_example_flows=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60535 - "PATCH /api/v1/flows/dc78a63a-7f63-4e18-805b-8824a32b0a21 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60539 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T21:53:54.269517Z [info     ] Starting job execution: job_id=ef927639-4afd-4b7b-87c9-9ee91176d408 service=langflow
+2026-09-28T21:53:54.273189Z [info     ] Executing job function for job_id=ef927639-4afd-4b7b-87c9-9ee91176d408 service=langflow
+2026-09-28T21:53:55.251029Z [warning  ] telemetry_writer_enabled=True but writer is not running; falling back to legacy direct-write path for transactions service=langflow
+2026-09-28T21:53:55.258041Z [warning  ] telemetry_writer_enabled=True but writer is not running; falling back to legacy direct-write path for vertex_builds service=langflow
+[09/28/26 16:53:55] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target 'icu_flag',               
+                             minority share 46.5%                              
+                    INFO     [EDA] 15 features explored, 3        logging.py:64
+                             significantly associated with                     
+                             'icu_flag'                                        
+                    INFO     [PREPROCESSING] Hold-out split 219   logging.py:64
+                             train / 56 test rows, group overlap               
+                             0                                                 
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 16:53:56] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             0.79s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 16:53:58] INFO     [ML] SVM (RBF) trained in 1.53s,     logging.py:64
+                             best params {'C': 3.0, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+[09/28/26 16:54:04] INFO     [ML] Random Forest trained in 5.71s, logging.py:64
+                             best params {'max_depth': 5,                      
+                             'min_samples_leaf': 1}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 16:54:07] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             3.09s, best params {'learning_rate':              
+                             0.05, 'max_depth': 2}                             
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+                    INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             11.39s, best params {'weights': [2,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+[09/28/26 16:54:10] INFO     [ML] XGBoost trained in 3.54s, best  logging.py:64
+                             params {'learning_rate': 0.05,                    
+                             'max_depth': 2}                                   
+[09/28/26 16:54:18] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 11.27s, best params {'C': 0.1}                 
+                    INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 219 training rows                    
+[09/28/26 16:54:20] INFO     [CV] Logistic Regression: roc_auc    logging.py:64
+                             0.738 ± 0.056                                     
+[09/28/26 16:54:24] INFO     [CV] SVM (RBF): roc_auc 0.700 ±      logging.py:64
+                             0.066                                             
+[09/28/26 16:54:42] INFO     [CV] Random Forest: roc_auc 0.720 ±  logging.py:64
+                             0.081                                             
+[09/28/26 16:54:51] INFO     [CV] Gradient Boosting: roc_auc      logging.py:64
+                             0.658 ± 0.076                                     
+[09/28/26 16:54:54] INFO     [CV] XGBoost: roc_auc 0.647 ± 0.069  logging.py:64
+[09/28/26 16:55:15] INFO     [CV] Voting Ensemble: roc_auc 0.700  logging.py:64
+                             ± 0.076                                           
+[09/28/26 16:56:08] INFO     [CV] Stacking Ensemble: roc_auc      logging.py:64
+                             0.681 ± 0.085                                     
+                    INFO     [EVALUATION] Evaluating models       logging.py:64
+                    INFO     [CROSS-REFERENCE] Comparing          logging.py:64
+                             CV/Test/Train results                             
+                    INFO     [COMPARATOR] Ranking models          logging.py:64
+                    INFO     [COMPARATOR] 1. Logistic Regression  logging.py:64
+                             (normal) final_score=0.572                        
+                    INFO     [COMPARATOR] 2. SVM (RBF) (normal)   logging.py:64
+                             final_score=0.4862                                
+                    INFO     [COMPARATOR] 3. Random Forest        logging.py:64
+                             (normal) final_score=0.4709                       
+                    INFO     [COMPARATOR] 4. Voting Ensemble      logging.py:64
+                             (hybrid) final_score=0.4678                       
+                    INFO     [COMPARATOR] 5. Gradient Boosting    logging.py:64
+                             (normal) final_score=0.3997                       
+                    INFO     [COMPARATOR] 6. XGBoost (normal)     logging.py:64
+                             final_score=0.3915                                
+                    INFO     [COMPARATOR] 7. Stacking Ensemble    logging.py:64
+                             (hybrid) final_score=0.3753                       
+                    INFO     [STATS] Running inferential tests    logging.py:64
+                             (Friedman/Nemenyi, Nadeau-Bengio,                 
+                             DeLong, McNemar, bootstrap)                       
+                    INFO     [BEST MODEL] Logistic Regression     logging.py:64
+                             selected (final_score=0.572)                      
+[09/28/26 16:56:32] INFO     [STATS] Friedman p=0.011525; best    logging.py:64
+                             significantly better than 0/6 models              
+[09/28/26 16:56:33] INFO     [LLM] Generating explanation of the  logging.py:64
+                             selected model                                    
+                    INFO     AFC is enabled with max remote      models.py:6323
+                             calls: 10.                                        
+[09/28/26 16:57:33] INFO     Retrying                        before_sleep.py:64
+                             google.genai._api_client.BaseAp                   
+                             iClient._request_once in 1.65                     
+                             seconds as it raised                              
+                             ReadTimeout: The read operation                   
+                             timed out.                                        
+[09/28/26 16:57:46] INFO     [LANGFLOW] Flow completed: Logistic  logging.py:64
+                             Regression selected                               
+2026-09-28T21:57:47.039543Z [info     ] Job ef927639-4afd-4b7b-87c9-9ee91176d408 completed successfully service=langflow
+INFO:     127.0.0.1:60542 - "POST /api/v1/run/ml-model-comparison?stream=false HTTP/1.1" 200 OK
+2026-09-28T21:57:48.776414Z [info     ] Starting job execution: job_id=c469f403-fe8b-4843-9edc-cc7b180e2233 service=langflow
+2026-09-28T21:57:48.782498Z [info     ] Executing job function for job_id=c469f403-fe8b-4843-9edc-cc7b180e2233 service=langflow
+[09/28/26 16:57:48] INFO     [LANGFLOW] Flow started              logging.py:64
+                    ERROR    [LANGFLOW] Step 'data_validation'    logging.py:64
+                             failed: TargetNotFoundError                       
+                    WARNING  [LANGFLOW] Flow completed with       logging.py:64
+                             error: target_not_found                           
+2026-09-28T21:57:49.026488Z [info     ] Job c469f403-fe8b-4843-9edc-cc7b180e2233 completed successfully service=langflow
+INFO:     127.0.0.1:56218 - "POST /api/v1/run/ml-model-comparison?stream=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60739 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51931 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T22:03:56.361219Z [info     ] Starting job execution: job_id=877c7a7f-351a-41a5-9830-45491fab0e54 service=langflow
+2026-09-28T22:03:56.364248Z [info     ] Executing job function for job_id=877c7a7f-351a-41a5-9830-45491fab0e54 service=langflow
+[09/28/26 17:03:56] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target 'icu_flag',               
+                             minority share 46.5%                              
+                    INFO     [PREPROCESSING] Hold-out split 219   logging.py:64
+                             train / 56 test rows, group overlap               
+                             0                                                 
+                    INFO     [EDA] 15 features explored, 3        logging.py:64
+                             significantly associated with                     
+                             'icu_flag'                                        
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:03:57] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             0.90s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:03:59] INFO     [ML] SVM (RBF) trained in 1.43s,     logging.py:64
+                             best params {'C': 3.0, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+[09/28/26 17:04:04] INFO     [ML] Random Forest trained in 5.52s, logging.py:64
+                             best params {'max_depth': 5,                      
+                             'min_samples_leaf': 1}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:04:07] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             2.98s, best params {'learning_rate':              
+                             0.05, 'max_depth': 2}                             
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:04:08] INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             11.30s, best params {'weights': [2,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+[09/28/26 17:04:11] INFO     [ML] XGBoost trained in 3.50s, best  logging.py:64
+                             params {'learning_rate': 0.05,                    
+                             'max_depth': 2}                                   
+[09/28/26 17:04:20] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 11.86s, best params {'C': 0.1}                 
+                    INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 219 training rows                    
+[09/28/26 17:04:22] INFO     [CV] Logistic Regression: roc_auc    logging.py:64
+                             0.738 ± 0.056                                     
+[09/28/26 17:04:25] INFO     [CV] SVM (RBF): roc_auc 0.700 ±      logging.py:64
+                             0.066                                             
+[09/28/26 17:04:44] INFO     [CV] Random Forest: roc_auc 0.720 ±  logging.py:64
+                             0.081                                             
+[09/28/26 17:04:53] INFO     [CV] Gradient Boosting: roc_auc      logging.py:64
+                             0.658 ± 0.076                                     
+[09/28/26 17:04:56] INFO     [CV] XGBoost: roc_auc 0.647 ± 0.069  logging.py:64
+[09/28/26 17:05:17] INFO     [CV] Voting Ensemble: roc_auc 0.700  logging.py:64
+                             ± 0.076                                           
+[09/28/26 17:06:12] INFO     [CV] Stacking Ensemble: roc_auc      logging.py:64
+                             0.681 ± 0.085                                     
+                    INFO     [EVALUATION] Evaluating models       logging.py:64
+                    INFO     [CROSS-REFERENCE] Comparing          logging.py:64
+                             CV/Test/Train results                             
+                    INFO     [COMPARATOR] Ranking models          logging.py:64
+                    INFO     [COMPARATOR] 1. Logistic Regression  logging.py:64
+                             (normal) final_score=0.572                        
+                    INFO     [COMPARATOR] 2. SVM (RBF) (normal)   logging.py:64
+                             final_score=0.4862                                
+                    INFO     [COMPARATOR] 3. Random Forest        logging.py:64
+                             (normal) final_score=0.4709                       
+                    INFO     [COMPARATOR] 4. Voting Ensemble      logging.py:64
+                             (hybrid) final_score=0.4678                       
+                    INFO     [COMPARATOR] 5. Gradient Boosting    logging.py:64
+                             (normal) final_score=0.3997                       
+                    INFO     [COMPARATOR] 6. XGBoost (normal)     logging.py:64
+                             final_score=0.3915                                
+                    INFO     [COMPARATOR] 7. Stacking Ensemble    logging.py:64
+                             (hybrid) final_score=0.3753                       
+                    INFO     [STATS] Running inferential tests    logging.py:64
+                             (Friedman/Nemenyi, Nadeau-Bengio,                 
+                             DeLong, McNemar, bootstrap)                       
+                    INFO     [BEST MODEL] Logistic Regression     logging.py:64
+                             selected (final_score=0.572)                      
+[09/28/26 17:06:37] INFO     [STATS] Friedman p=0.011525; best    logging.py:64
+                             significantly better than 0/6 models              
+[09/28/26 17:06:38] INFO     [LLM] Generating explanation of the  logging.py:64
+                             selected model                                    
+                    INFO     AFC is enabled with max remote      models.py:6323
+                             calls: 10.                                        
+[09/28/26 17:06:56] INFO     Retrying                        before_sleep.py:64
+                             google.genai._api_client.BaseAp                   
+                             iClient._request_once in 1.13                     
+                             seconds as it raised                              
+                             ServerError: 503 UNAVAILABLE.                     
+                             {'error': {'code': 503,                           
+                             'message': 'This model is                         
+                             currently experiencing high                       
+                             demand. Spikes in demand are                      
+                             usually temporary. Please try                     
+                             again later.', 'status':                          
+                             'UNAVAILABLE'}}.                                  
+[09/28/26 17:07:00] INFO     [LANGFLOW] Flow completed: Logistic  logging.py:64
+                             Regression selected                               
+2026-09-28T22:07:00.140678Z [info     ] Job 877c7a7f-351a-41a5-9830-45491fab0e54 completed successfully service=langflow
+INFO:     127.0.0.1:51935 - "POST /api/v1/run/ml-model-comparison?stream=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63681 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62255 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63940 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55880 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61111 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59328 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T22:10:15.779117Z [info     ] Starting job execution: job_id=22e1f21a-ba32-435d-8f26-77063f941b68 service=langflow
+2026-09-28T22:10:15.784468Z [info     ] Executing job function for job_id=22e1f21a-ba32-435d-8f26-77063f941b68 service=langflow
+[09/28/26 17:10:15] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target 'icu_flag',               
+                             minority share 46.5%                              
+                    INFO     [PREPROCESSING] Hold-out split 219   logging.py:64
+                             train / 56 test rows, group overlap               
+                             0                                                 
+                    INFO     [EDA] 15 features explored, 3        logging.py:64
+                             significantly associated with                     
+                             'icu_flag'                                        
+[09/28/26 17:10:16] INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [ML] Logistic Regression trained in  logging.py:64
+                             0.67s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:10:18] INFO     [ML] SVM (RBF) trained in 1.17s,     logging.py:64
+                             best params {'C': 3.0, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+[09/28/26 17:10:23] INFO     [ML] Random Forest trained in 5.62s, logging.py:64
+                             best params {'max_depth': 5,                      
+                             'min_samples_leaf': 1}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:10:27] INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             11.05s, best params {'weights': [2,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+                    INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             3.47s, best params {'learning_rate':              
+                             0.05, 'max_depth': 2}                             
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:10:31] INFO     [ML] XGBoost trained in 3.81s, best  logging.py:64
+                             params {'learning_rate': 0.05,                    
+                             'max_depth': 2}                                   
+[09/28/26 17:10:39] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 12.25s, best params {'C': 0.1}                 
+                    INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 219 training rows                    
+[09/28/26 17:10:41] INFO     [CV] Logistic Regression: roc_auc    logging.py:64
+                             0.738 ± 0.056                                     
+[09/28/26 17:10:45] INFO     [CV] SVM (RBF): roc_auc 0.700 ±      logging.py:64
+                             0.066                                             
+[09/28/26 17:11:03] INFO     [CV] Random Forest: roc_auc 0.720 ±  logging.py:64
+                             0.081                                             
+[09/28/26 17:11:12] INFO     [CV] Gradient Boosting: roc_auc      logging.py:64
+                             0.658 ± 0.076                                     
+[09/28/26 17:11:15] INFO     [CV] XGBoost: roc_auc 0.647 ± 0.069  logging.py:64
+[09/28/26 17:11:38] INFO     [CV] Voting Ensemble: roc_auc 0.700  logging.py:64
+                             ± 0.076                                           
+INFO:     127.0.0.1:58633 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T22:11:51.082924Z [info     ] Starting job execution: job_id=20e1cfa3-a13b-4a71-abc8-7d8f2edb1830 service=langflow
+2026-09-28T22:11:51.109152Z [info     ] Executing job function for job_id=20e1cfa3-a13b-4a71-abc8-7d8f2edb1830 service=langflow
+[09/28/26 17:11:51] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target                           
+                             'died_in_hospital', minority share                
+                             5.5%                                              
+                    INFO     [PREPROCESSING] Hold-out split 220   logging.py:64
+                             train / 55 test rows, group overlap               
+                             0                                                 
+                    INFO     [EDA] 15 features explored, 2        logging.py:64
+                             significantly associated with                     
+                             'died_in_hospital'                                
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:11:53] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             1.56s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:11:55] INFO     [ML] SVM (RBF) trained in 2.02s,     logging.py:64
+                             best params {'C': 0.3, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+INFO:     127.0.0.1:56570 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T22:12:02.784586Z [info     ] Starting job execution: job_id=bb031c52-9ea7-4877-9085-ba692a12e79e service=langflow
+2026-09-28T22:12:02.874834Z [info     ] Executing job function for job_id=bb031c52-9ea7-4877-9085-ba692a12e79e service=langflow
+[09/28/26 17:12:03] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target 'icu_flag',               
+                             minority share 46.5%                              
+                    INFO     [PREPROCESSING] Hold-out split 219   logging.py:64
+                             train / 56 test rows, group overlap               
+                             0                                                 
+[09/28/26 17:12:04] INFO     [EDA] 15 features explored, 3        logging.py:64
+                             significantly associated with                     
+                             'icu_flag'                                        
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:12:06] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             1.38s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:12:09] INFO     [ML] SVM (RBF) trained in 2.97s,     logging.py:64
+                             best params {'C': 3.0, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+[09/28/26 17:12:13] INFO     [ML] Random Forest trained in        logging.py:64
+                             17.60s, best params {'max_depth': 5,              
+                             'min_samples_leaf': 5}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+INFO:     127.0.0.1:65079 - "GET /health HTTP/1.1" 200 OK
+2026-09-28T22:12:18.566749Z [info     ] Starting job execution: job_id=c4c3b9c3-1f79-46c0-b687-66fd5566c7dd service=langflow
+2026-09-28T22:12:18.776522Z [info     ] Executing job function for job_id=c4c3b9c3-1f79-46c0-b687-66fd5566c7dd service=langflow
+[09/28/26 17:12:19] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target 'icu_flag',               
+                             minority share 46.5%                              
+                    INFO     [PREPROCESSING] Hold-out split 219   logging.py:64
+                             train / 56 test rows, group overlap               
+                             0                                                 
+[09/28/26 17:12:20] INFO     [EDA] 15 features explored, 3        logging.py:64
+                             significantly associated with                     
+                             'icu_flag'                                        
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:12:21] INFO     [ML] Random Forest trained in        logging.py:64
+                             11.53s, best params {'max_depth': 5,              
+                             'min_samples_leaf': 1}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:12:23] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             1.98s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:12:27] INFO     [ML] SVM (RBF) trained in 3.49s,     logging.py:64
+                             best params {'C': 3.0, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+[09/28/26 17:12:35] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             21.33s, best params                               
+                             {'learning_rate': 0.05, 'max_depth':              
+                             3}                                                
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:12:37] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             15.71s, best params                               
+                             {'learning_rate': 0.05, 'max_depth':              
+                             2}                                                
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:12:41] INFO     [ML] Random Forest trained in        logging.py:64
+                             12.81s, best params {'max_depth': 5,              
+                             'min_samples_leaf': 1}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+[09/28/26 17:12:42] INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             49.98s, best params {'weights': [1,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+INFO:     127.0.0.1:49568 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:12:52] INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             46.78s, best params {'weights': [2,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+[09/28/26 17:13:00] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             18.68s, best params                               
+                             {'learning_rate': 0.05, 'max_depth':              
+                             2}                                                
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:13:08] INFO     [ML] XGBoost trained in 30.69s, best logging.py:64
+                             params {'learning_rate': 0.05,                    
+                             'max_depth': 2}                                   
+[09/28/26 17:13:09] INFO     [ML] XGBoost trained in 33.21s, best logging.py:64
+                             params {'learning_rate': 0.1,                     
+                             'max_depth': 2}                                   
+                    INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             47.66s, best params {'weights': [2,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+INFO:     127.0.0.1:51999 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:13:29] INFO     [ML] XGBoost trained in 29.23s, best logging.py:64
+                             params {'learning_rate': 0.05,                    
+                             'max_depth': 2}                                   
+[09/28/26 17:13:43] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 50.12s, best params {'C': 0.1}                 
+[09/28/26 17:13:44] INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 219 training rows                    
+[09/28/26 17:13:48] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 64.86s, best params {'C': 1.0}                 
+                    INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 220 training rows                    
+[09/28/26 17:13:52] INFO     [CV] Logistic Regression: roc_auc    logging.py:64
+                             0.738 ± 0.056                                     
+INFO:     127.0.0.1:55860 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:13:56] INFO     [CV] Logistic Regression: pr_auc     logging.py:64
+                             0.396 ± 0.127                                     
+[09/28/26 17:14:00] INFO     [HYBRID] Stacking Ensemble trained   logging.py:64
+                             in 49.68s, best params {'C': 0.1}                 
+INFO:     127.0.0.1:65024 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:14:01] INFO     [CV] Running 5-fold nested CV        logging.py:64
+                             (StratifiedGroupKFold (grouped by                 
+                             patient)) on 219 training rows                    
+[09/28/26 17:14:07] INFO     [CV] Logistic Regression: roc_auc    logging.py:64
+                             0.738 ± 0.056                                     
+[09/28/26 17:14:08] INFO     [CV] SVM (RBF): roc_auc 0.700 ±      logging.py:64
+                             0.066                                             
+INFO:     127.0.0.1:65206 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:14:13] INFO     [CV] SVM (RBF): pr_auc 0.505 ± 0.354 logging.py:64
+INFO:     127.0.0.1:64187 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:14:23] INFO     [CV] SVM (RBF): roc_auc 0.700 ±      logging.py:64
+                             0.066                                             
+[09/28/26 17:15:17] INFO     [CV] Random Forest: roc_auc 0.720 ±  logging.py:64
+                             0.081                                             
+[09/28/26 17:15:21] INFO     [CV] Stacking Ensemble: roc_auc      logging.py:64
+                             0.681 ± 0.085                                     
+                    INFO     [EVALUATION] Evaluating models       logging.py:64
+[09/28/26 17:15:22] INFO     [CROSS-REFERENCE] Comparing          logging.py:64
+                             CV/Test/Train results                             
+                    INFO     [COMPARATOR] Ranking models          logging.py:64
+                    INFO     [COMPARATOR] 1. Logistic Regression  logging.py:64
+                             (normal) final_score=0.572                        
+                    INFO     [COMPARATOR] 2. SVM (RBF) (normal)   logging.py:64
+                             final_score=0.4862                                
+                    INFO     [COMPARATOR] 3. Random Forest        logging.py:64
+                             (normal) final_score=0.4709                       
+                    INFO     [COMPARATOR] 4. Voting Ensemble      logging.py:64
+                             (hybrid) final_score=0.4678                       
+                    INFO     [COMPARATOR] 5. Gradient Boosting    logging.py:64
+                             (normal) final_score=0.3997                       
+                    INFO     [COMPARATOR] 6. XGBoost (normal)     logging.py:64
+                             final_score=0.3915                                
+                    INFO     [COMPARATOR] 7. Stacking Ensemble    logging.py:64
+                             (hybrid) final_score=0.3753                       
+[09/28/26 17:15:23] INFO     [STATS] Running inferential tests    logging.py:64
+                             (Friedman/Nemenyi, Nadeau-Bengio,                 
+                             DeLong, McNemar, bootstrap)                       
+                    INFO     [BEST MODEL] Logistic Regression     logging.py:64
+                             selected (final_score=0.572)                      
+[09/28/26 17:15:27] INFO     [CV] Random Forest: roc_auc 0.720 ±  logging.py:64
+                             0.081                                             
+[09/28/26 17:15:51] INFO     [CV] Random Forest: pr_auc 0.357 ±   logging.py:64
+                             0.235                                             
+[09/28/26 17:16:18] INFO     [CV] Gradient Boosting: roc_auc      logging.py:64
+                             0.658 ± 0.076                                     
+[09/28/26 17:16:21] INFO     [CV] Gradient Boosting: roc_auc      logging.py:64
+                             0.658 ± 0.076                                     
+[09/28/26 17:16:32] INFO     [CV] Gradient Boosting: pr_auc 0.207 logging.py:64
+                             ± 0.075                                           
+[09/28/26 17:16:45] INFO     [STATS] Friedman p=0.011525; best    logging.py:64
+                             significantly better than 0/6 models              
+[09/28/26 17:16:46] INFO     [LLM] Generating explanation of the  logging.py:64
+                             selected model                                    
+                    INFO     AFC is enabled with max remote      models.py:6323
+                             calls: 10.                                        
+[09/28/26 17:16:49] INFO     [CV] XGBoost: roc_auc 0.647 ± 0.069  logging.py:64
+[09/28/26 17:16:50] INFO     [CV] XGBoost: roc_auc 0.647 ± 0.069  logging.py:64
+INFO:     127.0.0.1:61669 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:16:57] INFO     [CV] XGBoost: pr_auc 0.317 ± 0.154   logging.py:64
+INFO:     127.0.0.1:59345 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:17:11] INFO     Retrying                        before_sleep.py:64
+                             google.genai._api_client.BaseAp                   
+                             iClient._request_once in 1.8                      
+                             seconds as it raised                              
+                             ServerError: 503 UNAVAILABLE.                     
+                             {'error': {'code': 503,                           
+                             'message': 'This model is                         
+                             currently experiencing high                       
+                             demand. Spikes in demand are                      
+                             usually temporary. Please try                     
+                             again later.', 'status':                          
+                             'UNAVAILABLE'}}.                                  
+INFO:     127.0.0.1:58723 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64470 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:17:43] INFO     [LLM] Deterministic explanation      logging.py:64
+                             used: LLM request failed                          
+                             (ServerError)                                     
+                    INFO     [LANGFLOW] Flow completed: Logistic  logging.py:64
+                             Regression selected                               
+2026-09-28T22:17:44.198267Z [info     ] Job 22e1f21a-ba32-435d-8f26-77063f941b68 completed successfully service=langflow
+INFO:     127.0.0.1:59684 - "POST /api/v1/run/ml-model-comparison?stream=false HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56267 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:18:03] INFO     [CV] Voting Ensemble: roc_auc 0.700  logging.py:64
+                             ± 0.076                                           
+2026-09-28T22:18:04.907558Z [info     ] Starting job execution: job_id=ed1a13c0-e6e8-49f4-9bd8-3d366839b99a service=langflow
+2026-09-28T22:18:04.950070Z [info     ] Executing job function for job_id=ed1a13c0-e6e8-49f4-9bd8-3d366839b99a service=langflow
+[09/28/26 17:18:05] INFO     [LANGFLOW] Flow started              logging.py:64
+                    INFO     [VALIDATION] Dataset 'mimic_icu'     logging.py:64
+                             valid: 275 rows, target                           
+                             'died_in_hospital', minority share                
+                             5.5%                                              
+                    INFO     [PREPROCESSING] Hold-out split 220   logging.py:64
+                             train / 55 test rows, group overlap               
+                             0                                                 
+[09/28/26 17:18:06] INFO     [EDA] 15 features explored, 2        logging.py:64
+                             significantly associated with                     
+                             'died_in_hospital'                                
+                    INFO     [HYBRID] Training Voting Ensemble    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [ML] Training Logistic Regression    logging.py:64
+                             (grid search over 4 configurations)               
+                    INFO     [CV] Voting Ensemble: roc_auc 0.700  logging.py:64
+                             ± 0.076                                           
+[09/28/26 17:18:08] INFO     [ML] Logistic Regression trained in  logging.py:64
+                             1.82s, best params {'C': 10.0}                    
+                    INFO     [ML] Training SVM (RBF) (grid search logging.py:64
+                             over 6 configurations)                            
+[09/28/26 17:18:12] INFO     [ML] SVM (RBF) trained in 3.95s,     logging.py:64
+                             best params {'C': 0.3, 'gamma':                   
+                             0.03}                                             
+                    INFO     [ML] Training Random Forest (grid    logging.py:64
+                             search over 4 configurations)                     
+INFO:     127.0.0.1:65245 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:18:36] INFO     [ML] Random Forest trained in        logging.py:64
+                             23.55s, best params {'max_depth': 5,              
+                             'min_samples_leaf': 5}                            
+                    INFO     [ML] Training Gradient Boosting      logging.py:64
+                             (grid search over 4 configurations)               
+INFO:     127.0.0.1:64063 - "GET /health HTTP/1.1" 200 OK
+[09/28/26 17:18:54] INFO     [ML] Gradient Boosting trained in    logging.py:64
+                             17.36s, best params                               
+                             {'learning_rate': 0.05, 'max_depth':              
+                             3}                                                
+                    INFO     [ML] Training XGBoost (grid search   logging.py:64
+                             over 4 configurations)                            
+[09/28/26 17:18:55] INFO     [CV] Voting Ensemble: pr_auc 0.402 ± logging.py:64
+                             0.183                                             
+[09/28/26 17:18:59] INFO     [HYBRID] Voting Ensemble trained in  logging.py:64
+                             51.51s, best params {'weights': [1,               
+                             1, 1]}                                            
+                    INFO     [HYBRID] Training Stacking Ensemble  logging.py:64
+                             (grid search over 2 configurations)               
+[09/28/26 17:19:05] WARNING  [CV] Stacking Ensemble CV failed:    logging.py:64
+                             ValueError                                        
+[09/28/26 17:19:06] INFO     [EVALUATION] Evaluating models       logging.py:64
+                    INFO     [CROSS-REFERENCE] Comparing          logging.py:64
+                             CV/Test/Train results                             
+                    INFO     [COMPARATOR] Ranking models          logging.py:64
+                    INFO     [COMPARATOR] 1. Logistic Regression  logging.py:64
+                             (normal) final_score=0.2327                       
+                    INFO     [COMPARATOR] 2. Voting Ensemble      logging.py:64
+                             (hybrid) final_score=0.0246                       
+                    INFO     [COMPARATOR] 3. SVM (RBF) (normal)   logging.py:64
+                             final_score=-0.0703                               
+                    INFO     [COMPARATOR] 4. XGBoost (normal)     logging.py:64
+                             final_score=-0.1079                               
+[09/28/26 17:19:07] INFO     [COMPARATOR] 5. Random Forest        logging.py:64
+                             (normal) final_score=-0.1325                      
+                    INFO     [COMPARATOR] 6. Gradient Boosting    logging.py:64
+                             (normal) final_score=-0.1598                      
+                    INFO     [STATS] Running inferential tests    logging.py:64
+                             (Friedman/Nemenyi, Nadeau-Bengio,                 
+                             DeLong, McNemar, bootstrap)                       
+                    INFO     [BEST MODEL] Logistic Regression     logging.py:64
+                             selected (final_score=0.2327)                     

@@ -1,0 +1,7 @@
+# Self-contained: this module does not import anything from backend/app and is
+# installed/run in its own environment (python -m venv .venv).
+langchain==1.4.2
+langchain-anthropic==1.7.2
+pandas>=2.2
+pyarrow>=17
+pytest>=8

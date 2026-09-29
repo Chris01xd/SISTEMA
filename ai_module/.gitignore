@@ -1,0 +1,6 @@
+# Re-creatable with `python -m ai_module.digital_twin.prepare` / `train`
+data/raw/
+data/processed/
+artifacts/
+.venv/
+.env

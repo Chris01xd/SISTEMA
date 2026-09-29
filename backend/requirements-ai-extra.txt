@@ -1,0 +1,12 @@
+# Optional heavy AI dependency, kept out of the default backend build so
+# `docker compose up --build` / `pip install -r requirements.txt` stays fast.
+#
+# Install with the CPU-only wheel index (much smaller download than the
+# default CUDA-enabled PyPI wheel):
+#
+#   pip install -r requirements-ai-extra.txt --extra-index-url https://download.pytorch.org/whl/cpu
+#
+# Needed only to train/run LSTMDemandForecaster in
+# app/artificial_intelligence/demand_forecasting.py. Without it, the module
+# still works and falls back to XGBoostDemandForecaster.
+torch==2.4.1

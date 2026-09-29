@@ -1,0 +1,27 @@
+# Python
+backend/.venv/
+langchain_module/.venv/
+langflow_integration/.venv/
+langflow_integration/.wheels/
+streamlit_app/.venv/
+ai_module/.venv/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+backend/.env
+backend/generated_reports/
+backend/app/artificial_intelligence/artifacts/
+# Public datasets downloaded/ingested at runtime (re-creatable, some sizeable)
+backend/data/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Docker
+postgres_data/

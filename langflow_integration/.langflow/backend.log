@@ -1,0 +1,296 @@
+INFO:     Started server process [8132]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:51895 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51901 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:51913 - "POST /api/v1/auth/register HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:51918 - "POST /api/v1/auth/login HTTP/1.1" 422 Unprocessable Content
+INFO:     127.0.0.1:51924 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+INFO:     127.0.0.1:51927 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51930 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51934 - "POST /api/v1/ml/analysis HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57203 - "GET /api/v1/ml/analysis/20260928T220356Z-4b408206/report?format=pdf HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57206 - "GET /api/v1/ml/analysis/20260928T220356Z-4b408206/report?format=xlsx HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57209 - "GET /api/v1/ml/best-model HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53353 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:53355 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:58591 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:56806 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60524 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60526 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60528 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59409 - "GET /api/v1/crisp/projects HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55249 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55248 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52578 - "GET /api/v1/crisp/projects HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:53613 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:49341 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:54723 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53409 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:60905 - "POST /api/v1/hospitals HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55218 - "GET /api/v1/datasets/catalog HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61150 - "GET /api/v1/datasets/catalog HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:64112 - "POST /api/v1/hospitals HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61940 - "GET /api/v1/datasets/catalog HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61919 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49987 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62672 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51238 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50989 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50991 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53952 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56543 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51413 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51411 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58000 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61693 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64752 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54890 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57080 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:58391 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63680 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65343 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52751 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:59109 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:62254 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63939 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50163 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:55879 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49250 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59070 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59068 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59066 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59067 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62823 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59069 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58040 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53329 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62230 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62228 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50243 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54215 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54217 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61110 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49674 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53626 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:62478 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:55587 - "POST /api/v1/hospitals HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53844 - "POST /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/seed-default-layout HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64435 - "GET /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/twin-snapshot HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63472 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59084 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64903 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:64901 - "GET /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/twin-snapshot HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64424 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49920 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:54415 - "POST /api/v1/datasets/ingest HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54173 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64558 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/preview?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64556 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59327 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62053 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58393 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58396 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58397 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50173 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64475 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64473 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59534 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58399 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59197 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54105 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56158 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62001 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:61281 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:52981 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:60836 - "GET /api/v1/ml/status HTTP/1.1" 401 Unauthorized
+INFO:     127.0.0.1:65013 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65011 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65014 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65012 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65015 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51081 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53643 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60665 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60669 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60668 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50916 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61094 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57850 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52282 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/phases HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52283 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52284 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59905 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/experiments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59907 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62260 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62258 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/datasources HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59347 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/datasets HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54057 - "GET /api/v1/crisp/datasets/1dde0640-9269-40ea-b9d1-2f8f9946456a/versions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55927 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/experiments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55928 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/experiments/compare HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59980 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/experiments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59979 - "GET /api/v1/crisp/experiments/c194cd3d-311e-4ede-89e9-1dc11cb92a6d/models HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58632 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51476 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64839 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64837 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64838 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65343 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65122 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64050 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64049 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51441 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59699 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59703 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59702 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56569 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57147 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57146 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/preview?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57145 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65078 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64111 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64111 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49567 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60016 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60016 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51998 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55758 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65023 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55109 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65058 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61106 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61028 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58576 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58578 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54945 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52422 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57882 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51506 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57530 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49583 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65205 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57768 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57770 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56094 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51405 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52304 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53491 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51724 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51726 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55626 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57008 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60694 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52966 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60834 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60836 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53377 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51102 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/phases HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65463 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65466 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55478 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55480 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56952 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56954 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59945 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49191 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63340 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58767 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49932 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64128 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61037 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55108 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64186 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51490 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/preview?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51489 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52703 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64993 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59473 - "POST /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/emergency-events HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62741 - "POST /api/v1/simulations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58452 - "GET /api/v1/simulations/00f9fcf5-99b8-4b85-942d-ce791695f830 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64640 - "GET /api/v1/simulations/00f9fcf5-99b8-4b85-942d-ce791695f830 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49347 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:49349 - "GET /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/twin-snapshot HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52646 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:59239 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:53304 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53302 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57343 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57345 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54659 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54657 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60676 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60675 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64330 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64332 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59427 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59429 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51360 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/preview?limit=15 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51359 - "GET /api/v1/datasets/01d16cb4-dbef-4b4d-90e2-bbf5ac25e002/summary HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55562 - "GET /api/v1/datasets/catalog HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49504 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57444 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62311 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62313 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:61668 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49320 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49322 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50938 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50940 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57157 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49566 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64633 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60058 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49675 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52795 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62990 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:62992 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59344 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58722 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53929 - "WebSocket /api/v1/ws/twin" [accepted]
+INFO:     connection open
+INFO:     127.0.0.1:63178 - "GET /api/v1/hospitals/e587cd2c-8971-40d8-80fe-d89925059c10/twin-snapshot HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65130 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65132 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65300 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65302 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53141 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53143 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54107 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54109 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58829 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58831 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50182 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:50184 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64469 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59683 - "POST /api/v1/ml/analysis HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56266 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55638 - "GET /api/v1/crisp/projects HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55640 - "GET /api/v1/crisp/mining/loading-units HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59569 - "GET /api/v1/crisp/mining/alerts HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59571 - "GET /api/v1/crisp/projects/c3dd4f19-cfc3-4d50-bbcb-9b5db15c1920/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52044 - "GET /api/v1/crisp/projects/40d8830f-0f2d-469d-a5a3-085d3f3a0888/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53438 - "GET /api/v1/crisp/projects/a60af55a-e34d-447b-b537-15caf7c8d194/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64919 - "GET /api/v1/crisp/projects/fe26a1f5-bb48-4a14-afc2-8899fa7591b6/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:63312 - "GET /api/v1/crisp/projects/48eac55f-94b0-4ecc-a158-d41776e4ddeb/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55350 - "GET /api/v1/crisp/projects/908979a1-ada6-47d2-9391-187010699bea/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51272 - "GET /api/v1/crisp/projects/de6dc7cc-32fd-4645-901c-91f3b5bedc47/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56845 - "GET /api/v1/crisp/projects/94e4c08b-d494-4b0b-8117-a0d02f0d2c1e/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56847 - "GET /api/v1/crisp/projects/57a96ec3-a900-497b-b78b-a83e76a75b03/deployments HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65244 - "GET /api/v1/ml/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64062 - "GET /api/v1/ml/status HTTP/1.1" 200 OK

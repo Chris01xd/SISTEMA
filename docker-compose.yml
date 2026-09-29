@@ -1,0 +1,63 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: hospital_twin_postgres
+    environment:
+      POSTGRES_USER: twin_user
+      POSTGRES_PASSWORD: twin_pass
+      POSTGRES_DB: hospital_twin
+    ports:
+      # Host port is overridable (POSTGRES_HOST_PORT=5433 docker compose up) when 5432 is taken.
+      - "${POSTGRES_HOST_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U twin_user -d hospital_twin"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: ./backend
+    container_name: hospital_twin_backend
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://twin_user:twin_pass@postgres:5432/hospital_twin
+      # Docker Desktop on Windows doesn't forward real filesystem events for
+      # bind-mounted volumes, which crashes watchfiles' Rust watcher
+      # (WatchfilesRustInternalError: Input/output error) and kills --reload.
+      # Polling avoids relying on those events.
+      WATCHFILES_FORCE_POLLING: "true"
+      # Standalone AI module (LangChain + LangGraph + digital twin), mounted below; see
+      # app/services/ai_module_service.py. Its own AI_* settings can go in backend/.env.
+      AI_MODULE_ROOT: /opt/ai
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      # Standalone LangChain module used by POST /api/v1/assistant/ask; the backend finds it
+      # at /langchain_module (see app/services/assistant_service.py).
+      - ./langchain_module:/langchain_module:ro
+      # Writable: `prepare` and `train` store data/ and artifacts/ inside it.
+      - ./ai_module:/opt/ai/ai_module
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./frontend
+    container_name: hospital_twin_frontend
+    environment:
+      VITE_BACKEND_URL: http://backend:8000
+    depends_on:
+      - backend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
