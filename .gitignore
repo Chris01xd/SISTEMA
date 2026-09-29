@@ -3,14 +3,19 @@ backend/.venv/
 langchain_module/.venv/
 langflow_integration/.venv/
 langflow_integration/.wheels/
+langflow_integration/.langflow/*.log
 streamlit_app/.venv/
 ai_module/.venv/
 backend/__pycache__/
 **/__pycache__/
+**/.pytest_cache/
+.ruff_cache/
 *.pyc
 backend/.env
 backend/generated_reports/
 backend/app/artificial_intelligence/artifacts/
+# ML analysis run artifacts (re-created by MLAnalysisService each run)
+backend/app/crisp_data_artifacts/
 # Public datasets downloaded/ingested at runtime (re-creatable, some sizeable)
 backend/data/
 
