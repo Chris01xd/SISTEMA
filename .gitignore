@@ -30,3 +30,6 @@ frontend/dist/
 
 # Docker
 postgres_data/
+
+# Langflow local credentials
+langflow_integration/.langflow/api_key.txt
