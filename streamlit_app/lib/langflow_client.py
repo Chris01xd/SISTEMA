@@ -6,12 +6,23 @@ outputs[0].outputs[0].results.message.text holds the flow's final JSON as a stri
 from __future__ import annotations
 
 import json
+import os
+from pathlib import Path
 from typing import Any
 
 import httpx
 
 DEFAULT_BASE_URL = "http://127.0.0.1:7860"
 DEFAULT_TIMEOUT = 600.0
+KEY_FILE = Path(__file__).resolve().parents[2] / "langflow_integration" / ".langflow" / "api_key.txt"
+
+
+def default_api_key() -> str:
+    """$LANGFLOW_API_KEY, else the key created by import_flow.py --create-key."""
+    key = os.environ.get("LANGFLOW_API_KEY", "").strip()
+    if not key and KEY_FILE.exists():
+        key = KEY_FILE.read_text(encoding="utf-8").strip()
+    return key
 
 
 def is_reachable(base_url: str = DEFAULT_BASE_URL) -> bool:
@@ -24,6 +35,7 @@ def is_reachable(base_url: str = DEFAULT_BASE_URL) -> bool:
 
 def run_flow(endpoint: str, input_value: str, base_url: str = DEFAULT_BASE_URL, api_key: str = "",
             timeout: float = DEFAULT_TIMEOUT) -> dict[str, Any]:
+    api_key = api_key or default_api_key()
     headers = {"x-api-key": api_key} if api_key else {}
     body = {"input_value": input_value, "input_type": "chat", "output_type": "chat", "tweaks": {}}
     with httpx.Client(base_url=base_url, headers=headers, timeout=timeout) as client:

@@ -30,7 +30,12 @@ if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("AI_LLM_API_KEY"))
 def _agent():
     settings = Settings.from_env()
     df = load_dataset(settings.dataset_path)
-    return build_agent(df, settings=settings), len(df)
+    # Usa el proveedor configurado en ai_module/.env (p. ej. google_genai) en vez de Anthropic fijo.
+    from ai_module.config.settings import AISettings
+    from ai_module.services.llm_factory import build_chat_model
+    ai_settings = AISettings()
+    model = build_chat_model(ai_settings) if ai_settings.llm_enabled else None
+    return build_agent(df, model=model, settings=settings), len(df)
 
 
 try:
