@@ -8,6 +8,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import chart, table  # noqa: E402
 from lib.charts import cv_fold_bars, cv_mean_std  # noqa: E402
 from lib.pipeline import current_output  # noqa: E402
 from lib.report import render_export_buttons  # noqa: E402
@@ -26,10 +27,10 @@ st.caption(f"Estrategia: {cv['strategy']} · {cv['folds']} folds externos"
           + f" · métrica primaria: {cv['primary_metric']}")
 
 st.subheader("Métrica primaria por modelo y por fold")
-st.plotly_chart(cv_fold_bars(cv["models"], cv["primary_metric"]), width='stretch')
+chart(cv_fold_bars(cv["models"], cv["primary_metric"]))
 
 st.subheader("Media ± desviación estándar por modelo")
-st.plotly_chart(cv_mean_std(cv["models"]), width='stretch')
+chart(cv_mean_std(cv["models"]))
 st.info(out["interpretations"]["cross_validation"])
 
 st.subheader("Detalle por fold")
@@ -38,7 +39,7 @@ model = next(m for m in cv["models"].values() if m["name"] == model_name)
 fold_rows = [{"fold": f["fold"], "train (n)": f["train_size"], "validación (n)": f["validation_size"],
               **{f"val_{k}": v for k, v in f["validation"].items()}, "tiempo ajuste (s)": f["fit_time_s"]}
             for f in model["folds"]]
-st.dataframe(pd.DataFrame(fold_rows), width='stretch')
+table(pd.DataFrame(fold_rows), 'Detalle por fold')
 c1, c2, c3 = st.columns(3)
 c1.metric("cv_mean", model["cv_mean"])
 c2.metric("cv_std", model["cv_std"])

@@ -8,6 +8,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import chart, table  # noqa: E402
 from lib.charts import categorical_bar, correlation_heatmap, numeric_histogram  # noqa: E402
 from lib.pipeline import DATASET_LABELS, current_output  # noqa: E402
 from lib.report import render_export_buttons  # noqa: E402
@@ -34,7 +35,7 @@ st.info(it["eda_overview"])
 
 st.subheader("Valores faltantes")
 missing_df = pd.DataFrame(eda["missing"])
-st.dataframe(missing_df, width='stretch')
+table(missing_df, 'Valores faltantes')
 st.info(it["eda_missing"])
 
 st.subheader("Variables numéricas y binarias")
@@ -42,7 +43,7 @@ st.caption("Prueba de Mann-Whitney U (positiva vs. negativa), corrección de Hol
 for feature in eda["numeric"]:
     col_chart, col_table = st.columns([2, 1])
     with col_chart:
-        st.plotly_chart(numeric_histogram(feature), width='stretch', key=f"hist_{feature['feature']}")
+        chart(numeric_histogram(feature), key=f"hist_{feature['feature']}")
     with col_table:
         a = feature["association"]
         st.markdown(f"**{feature['feature']}**")
@@ -56,7 +57,7 @@ st.caption("Prueba chi-cuadrado con V de Cramér, corrección de Holm.")
 for feature in eda["categorical"]:
     col_chart, col_table = st.columns([2, 1])
     with col_chart:
-        st.plotly_chart(categorical_bar(feature), width='stretch', key=f"cat_{feature['feature']}")
+        chart(categorical_bar(feature), key=f"cat_{feature['feature']}")
     with col_table:
         a = feature["association"]
         st.markdown(f"**{feature['feature']}** ({feature['n_levels']} niveles)")
@@ -64,8 +65,8 @@ for feature in eda["categorical"]:
 st.info(it["eda_categorical"])
 
 st.subheader("Correlaciones (Spearman)")
-st.plotly_chart(correlation_heatmap(eda["correlations"]), width='stretch')
-st.dataframe(pd.DataFrame(eda["correlations"]["top_pairs"]), width='stretch')
+chart(correlation_heatmap(eda["correlations"]))
+table(pd.DataFrame(eda["correlations"]["top_pairs"]), 'Correlaciones (Spearman)')
 st.info(it["eda_correlations"])
 
 st.divider()

@@ -91,3 +91,20 @@ def confusion_matrix_fig(cm: list[list[int]], target: str) -> go.Figure:
                                 text=z, texttemplate="%{text}", showscale=False))
     fig.update_layout(title=f"Matriz de confusión — {target} (umbral 0.5)", height=340, margin=dict(t=40, b=10, l=10, r=10))
     return fig
+
+
+def all_figures(out: dict[str, Any]) -> dict[str, go.Figure]:
+    """Every chart shown across the pages, keyed by a file-friendly name (used for the PDF annex and the ZIP export)."""
+    eda, cv = out["eda"], out["cross_validation"]
+    figs: dict[str, go.Figure] = {}
+    for f in eda["numeric"]:
+        figs[f"eda_hist_{f['feature']}"] = numeric_histogram(f)
+    for f in eda["categorical"]:
+        figs[f"eda_cat_{f['feature']}"] = categorical_bar(f)
+    figs["eda_correlaciones_spearman"] = correlation_heatmap(eda["correlations"])
+    figs["curvas_roc"] = roc_curves(out["curves"], out["best_model"]["name"])
+    figs["ranking_final_score"] = ranking_bar(out["ranking"])
+    figs["matriz_confusion_ganador"] = confusion_matrix_fig(out["best_model"]["metrics"]["confusion_matrix"], out["dataset"]["target"])
+    figs["cv_por_fold"] = cv_fold_bars(cv["models"], cv["primary_metric"])
+    figs["cv_media_desviacion"] = cv_mean_std(cv["models"])
+    return figs

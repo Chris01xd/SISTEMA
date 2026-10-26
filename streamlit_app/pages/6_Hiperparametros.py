@@ -8,6 +8,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import table  # noqa: E402
 from lib.pipeline import current_output  # noqa: E402
 from lib.report import render_export_buttons  # noqa: E402
 
@@ -24,7 +25,7 @@ st.subheader("Resumen por modelo")
 summary_rows = [{"modelo": name, "tamaño de la rejilla": h.get("grid_size"), "mejores parámetros (refit final)": h.get("best_params"),
                   "score interno": h.get("best_inner_score"), "estabilidad entre folds externos": h.get("stability")}
                 for name, h in hp.items()]
-st.dataframe(pd.DataFrame(summary_rows), width='stretch')
+table(pd.DataFrame(summary_rows), 'Resumen por modelo')
 st.info(out["interpretations"]["hyperparameters"])
 
 st.subheader("Detalle por modelo")
@@ -36,9 +37,9 @@ else:
     st.write(f"Búsqueda: GridSearchCV, {h['inner_folds']} folds internos agrupados por paciente, "
             f"optimizando **{h['scoring']}**, {h['grid_size']} configuraciones evaluadas.")
     st.markdown("**Todas las configuraciones probadas (ordenadas por rank):**")
-    st.dataframe(pd.DataFrame(h.get("candidates") or []), width='stretch')
+    table(pd.DataFrame(h.get("candidates") or []), 'Detalle por modelo')
     st.markdown("**Configuración elegida en cada fold externo de la validación cruzada:**")
-    st.dataframe(pd.DataFrame(h.get("fold_choices") or []), width='stretch')
+    table(pd.DataFrame(h.get("fold_choices") or []), 'Detalle por modelo 2')
 
 st.divider()
 render_export_buttons(out, key="hyper")

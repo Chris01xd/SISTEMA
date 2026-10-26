@@ -8,6 +8,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import chart, table  # noqa: E402
 from lib.charts import roc_curves  # noqa: E402
 from lib.pipeline import current_output  # noqa: E402
 from lib.report import render_export_buttons  # noqa: E402
@@ -31,10 +32,10 @@ rows = [{
     "F1 (test)": (m["test_metrics"] or {}).get("f1"),
 } for m in models]
 st.subheader("Modelos entrenados (5 normales + 2 híbridos)")
-st.dataframe(pd.DataFrame(rows), width='stretch')
+table(pd.DataFrame(rows), 'Modelos entrenados (5 normales + 2 híbridos)')
 
 st.subheader("Curvas ROC (conjunto de prueba)")
-st.plotly_chart(roc_curves(out["curves"], out["best_model"]["name"]), width='stretch')
+chart(roc_curves(out["curves"], out["best_model"]["name"]))
 st.info(out["interpretations"]["roc_curves"])
 
 st.subheader("Descripción de cada modelo")

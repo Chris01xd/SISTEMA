@@ -4,12 +4,14 @@ from __future__ import annotations
 import json
 import os
 
+import pandas as pd
 import streamlit as st
 
 from lib.paths import REPO_ROOT, bootstrap
 
 bootstrap()
 
+from lib.export import table  # noqa: E402
 from lib.langflow_client import DEFAULT_BASE_URL, extract_json_payload, is_reachable, run_flow  # noqa: E402
 
 st.set_page_config(page_title="9. LangFlow", page_icon="🔗", layout="wide")
@@ -41,7 +43,7 @@ st.subheader(f"Estructura del flujo: {flow.get('name', 'ML Model Comparison')}")
 st.caption(flow.get("description", ""))
 st.write(f"{len(nodes)} nodos, {len(edges)} conexiones. Endpoint: `{endpoint}`")
 node_labels = [n.get("data", {}).get("type", n.get("id")) for n in nodes]
-st.dataframe({"nodo": [n["id"] for n in nodes], "tipo de componente": node_labels}, width='stretch')
+table(pd.DataFrame({"nodo": [n["id"] for n in nodes], "tipo de componente": node_labels}), "estructura_del_flujo")
 
 st.divider()
 st.subheader("Ejecutar el flujo")

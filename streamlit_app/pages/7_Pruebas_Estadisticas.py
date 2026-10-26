@@ -8,6 +8,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import table  # noqa: E402
 from lib.pipeline import current_output  # noqa: E402
 from lib.report import render_export_buttons  # noqa: E402
 
@@ -46,12 +47,12 @@ for p in st_out["pairwise_vs_best"]:
         "DeLong p (Holm)": p["delong"].get("p_value_holm"), "DeLong sig.": p["delong"].get("significant"),
         "McNemar p (Holm)": p["mcnemar"].get("p_value_holm"), "McNemar sig.": p["mcnemar"].get("significant"),
     })
-st.dataframe(pd.DataFrame(pairwise_rows), width='stretch')
+table(pd.DataFrame(pairwise_rows), '2. Mejor modelo vs. cada uno de los demás (Holm-corregido)')
 st.info(out["interpretations"]["statistical_tests"])
 
 st.subheader("3. Intervalos de confianza 95% (bootstrap, hold-out)")
 ci_rows = [{"modelo": name, "ROC-AUC 95% CI": c["roc_auc"], "F1 95% CI": c["f1"]} for name, c in st_out["bootstrap_ci_95"].items()]
-st.dataframe(pd.DataFrame(ci_rows), width='stretch')
+table(pd.DataFrame(ci_rows), '3. Intervalos de confianza 95% (bootstrap, hold-out)')
 if "bootstrap_ci" in out["interpretations"]:
     st.info(out["interpretations"]["bootstrap_ci"])
 

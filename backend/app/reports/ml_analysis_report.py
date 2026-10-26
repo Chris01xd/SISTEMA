@@ -6,6 +6,7 @@ report carries the same explanations as the screen. Charts use ReportLab's own g
 (no matplotlib dependency)."""
 from __future__ import annotations
 
+import io
 from pathlib import Path
 from typing import Any
 
@@ -17,9 +18,10 @@ from reportlab.graphics.charts.lineplots import LinePlot
 from reportlab.graphics.shapes import Drawing, String
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, landscape
+from reportlab.lib.utils import ImageReader
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
-from reportlab.platypus import KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+from reportlab.platypus import Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
 
 PAGE = landscape(A4)
 MARGIN = 1.2 * cm
@@ -32,7 +34,7 @@ L = {
         "dataset": "Dataset", "target": "Objetivo", "primary": "Métrica principal", "duration": "Duración (s)",
         "p1": "1. Comprensión del negocio", "p2": "2. Comprensión de los datos (EDA)", "p3": "3. Preparación de los datos",
         "p4": "4. Modelado e hiperparámetros", "p5": "5. Evaluación", "p6": "6. Despliegue y selección",
-        "overview": "Resumen del dataset", "missing": "Valores faltantes", "numeric": "Variables numéricas / binarias por clase",
+        "annex": "Anexo: gráficos en alta resolución", "overview": "Resumen del dataset", "missing": "Valores faltantes", "numeric": "Variables numéricas / binarias por clase",
         "categorical": "Variables categóricas", "corr": "Correlaciones de Spearman (pares más fuertes)",
         "prep": "Partición y preprocesamiento", "hyper": "Hiperparámetros seleccionados (búsqueda en rejilla)",
         "cv": "Validación cruzada anidada", "comparison": "Comparación de modelos (conjunto de prueba + CV)",
@@ -47,7 +49,7 @@ L = {
         "dataset": "Dataset", "target": "Target", "primary": "Primary metric", "duration": "Duration (s)",
         "p1": "1. Business understanding", "p2": "2. Data understanding (EDA)", "p3": "3. Data preparation",
         "p4": "4. Modeling and hyper-parameters", "p5": "5. Evaluation", "p6": "6. Deployment and selection",
-        "overview": "Dataset overview", "missing": "Missing values", "numeric": "Numeric / binary features by class",
+        "annex": "Annex: high-resolution charts", "overview": "Dataset overview", "missing": "Missing values", "numeric": "Numeric / binary features by class",
         "categorical": "Categorical features", "corr": "Spearman correlations (strongest pairs)",
         "prep": "Split and preprocessing", "hyper": "Selected hyper-parameters (grid search)",
         "cv": "Nested cross-validation", "comparison": "Model comparison (test set + CV)",
@@ -182,7 +184,8 @@ def _roc_chart(out: dict[str, Any]) -> Drawing:
     return d
 
 
-def generate_ml_pdf(out: dict[str, Any], path: Path, engine: str) -> Path:
+def generate_ml_pdf(out: dict[str, Any], path: Path, engine: str, figures: dict[str, bytes] | None = None) -> Path:
+    """`figures`: optional {title: PNG bytes}; rendered at full page width as a high-resolution chart annex."""
     t = L.get(out.get("language", "es"), L["es"])
     path.parent.mkdir(parents=True, exist_ok=True)
     styles = getSampleStyleSheet()
@@ -230,6 +233,13 @@ def generate_ml_pdf(out: dict[str, Any], path: Path, engine: str) -> Path:
     if out.get("analysis_source") == "llm":
         story.append(Paragraph(f"<b>{t['llm']}:</b> {out['analysis']}", interp))
     story.append(Paragraph(f"{t['artifact']}: {best['artifact_path']}", cell))
+    if figures:
+        story += [PageBreak(), Paragraph(t["annex"], h1)]
+        for title, png in figures.items():
+            width, height = ImageReader(io.BytesIO(png)).getSize()
+            w = WIDTH * 0.8
+            h = min(w * height / width, PAGE[1] - 2 * MARGIN - 60)
+            story.append(KeepTogether([Paragraph(title.replace("_", " "), h2), Image(io.BytesIO(png), width=h * width / height, height=h), Spacer(1, 10)]))
     SimpleDocTemplate(str(path), pagesize=PAGE, leftMargin=MARGIN, rightMargin=MARGIN, topMargin=MARGIN, bottomMargin=MARGIN,
                       title=t["title"]).build(story)
     return path

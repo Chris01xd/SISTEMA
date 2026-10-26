@@ -10,6 +10,7 @@ from lib.paths import bootstrap
 
 bootstrap()
 
+from lib.export import table  # noqa: E402
 from ai_module.digital_twin.store import TwinDataStore  # noqa: E402
 from lib.pipeline import get_ai_settings, prepare_dataset  # noqa: E402
 
@@ -41,7 +42,7 @@ store = TwinDataStore(settings.processed_dir)
 if "prepare_result" in st.session_state:
     r = st.session_state["prepare_result"]
     st.subheader("Tablas crudas leídas")
-    st.dataframe(pd.DataFrame([r["raw_counts"]]).T.rename(columns={0: "filas"}), width='stretch')
+    table(pd.DataFrame([r["raw_counts"]]).T.rename(columns={0: "filas"}), 'Tablas crudas leídas')
 else:
     st.info("Todavía no ejecutaste la carga en esta sesión — mostrando el último resultado ya persistido en disco.")
 
@@ -59,12 +60,12 @@ st.subheader("Auditoría de limpieza (data_report.json)")
 col1, col2 = st.columns(2)
 with col1:
     st.markdown("**Filas crudas por tabla**")
-    st.dataframe(pd.DataFrame([report["raw_rows"]]).T.rename(columns={0: "filas"}))
+    table(pd.DataFrame([report["raw_rows"]]).T.rename(columns={0: "filas"}), 'Auditoría de limpieza (data_report.json)')
     st.markdown("**Ingresos descartados**")
-    st.dataframe(pd.DataFrame([report["dropped"]]).T.rename(columns={0: "ingresos"}))
+    table(pd.DataFrame([report["dropped"]]).T.rename(columns={0: "ingresos"}), 'Auditoría de limpieza (data_report.json) 2')
 with col2:
     st.markdown("**Signos vitales anulados por estar fuera de rango fisiológico**")
-    st.dataframe(pd.DataFrame([report["vitals_nulled_out_of_range"]]).T.rename(columns={0: "valores anulados"}))
+    table(pd.DataFrame([report["vitals_nulled_out_of_range"]]).T.rename(columns={0: "valores anulados"}), 'Auditoría de limpieza (data_report.json) 3')
     st.metric("Temperaturas convertidas de °C a °F", report["temperature_celsius_converted"])
     st.metric("Horas de UCI recortadas a la estancia total", report["icu_hours_clipped_to_los"])
 

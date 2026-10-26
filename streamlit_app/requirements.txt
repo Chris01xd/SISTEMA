@@ -3,6 +3,7 @@
 # depending on the backend's FastAPI/DB stack or the frontend.
 streamlit>=1.38
 plotly>=5.24
+kaleido>=1.0  # PNG/SVG chart export; needs Chrome/Chromium (or run `plotly_get_chrome` once)
 httpx>=0.27
 
 # Same pins as ai_module/requirements.txt (kept identical so both import cleanly together).
