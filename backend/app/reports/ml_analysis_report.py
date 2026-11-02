@@ -1,4 +1,4 @@
-"""PDF / XLSX reports of an ML model-comparison analysis (output of the Langflow flow).
+"""PDF / XLSX / DOCX reports of an ML model-comparison analysis (output of the Langflow flow).
 
 Organized by CRISP-DM phase. Every table and chart is followed by its interpretation
 (`output["interpretations"]`, generated from the real values by ai_module.ml), so the
@@ -7,11 +7,12 @@ report carries the same explanations as the screen. Charts use ReportLab's own g
 from __future__ import annotations
 
 import io
+import math
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from openpyxl.styles import Alignment, Font, PatternFill
+from openpyxl.styles import Alignment, Font
 from reportlab.graphics.charts.barcharts import HorizontalBarChart
 from reportlab.graphics.charts.legends import Legend
 from reportlab.graphics.charts.lineplots import LinePlot
@@ -22,6 +23,9 @@ from reportlab.lib.utils import ImageReader
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import cm
 from reportlab.platypus import Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+
+from .office_style import (add_docx_table, add_docx_title, clean_table, generated_stamp, new_document, safe_sheet_name,
+                           sheet_print_setup, style_excel_table, usable_width, write_excel_title)
 
 PAGE = landscape(A4)
 MARGIN = 1.2 * cm
@@ -247,35 +251,121 @@ def generate_ml_pdf(out: dict[str, Any], path: Path, engine: str, figures: dict[
 
 # --------------------------------------------------------------------------------- XLSX
 
-_INVALID_SHEET_CHARS = set("[]:*?/\\")  # Excel rejects these in sheet names
+def _summary_rows(out: dict[str, Any], t: dict[str, str]) -> list[tuple[str, Any]]:
+    return [(p["phase"], p["summary"]) for p in out["crisp_dm"]] + [
+        (t["best"], out["best_model"]["name"]), ("final_score", out["best_model"]["final_score"]), (t["why"], out["selection_reason"])]
+
+
+def _meta_line(out: dict[str, Any], t: dict[str, str], engine: str | None = None) -> str:
+    parts = [f"{t['run']}: {out['run_id']}"] + ([f"{t['engine']}: {engine}"] if engine else []) + [
+        f"{t['dataset']}: {out['dataset']['dataset']}", f"{t['target']}: {out['dataset']['target']}",
+        f"{t['primary']}: {out['dataset']['primary_metric']}"]
+    return " · ".join(parts)
 
 
 def generate_ml_xlsx(out: dict[str, Any], path: Path) -> Path:
+    """One formatted sheet per report table: title, interpretation, styled table (frozen header, filters, fitted widths)."""
     t = L.get(out.get("language", "es"), L["es"])
     path.parent.mkdir(parents=True, exist_ok=True)
     it = out["interpretations"]
     used: set[str] = set()
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
-        summary = pd.DataFrame([(p["phase"], p["summary"]) for p in out["crisp_dm"]] +
-                               [(t["best"], out["best_model"]["name"]), ("final_score", out["best_model"]["final_score"]),
-                                (t["why"], out["selection_reason"])], columns=["CRISP-DM", ""])
-        summary.to_excel(writer, sheet_name="Resumen" if t is L["es"] else "Summary", index=False)
+        summary = clean_table(pd.DataFrame(_summary_rows(out, t), columns=["CRISP-DM", t["value"]]))
+        name = safe_sheet_name("Resumen" if t is L["es"] else "Summary", used)
+        summary.to_excel(writer, sheet_name=name, index=False, startrow=3)
+        ws = writer.sheets[name]
+        style_excel_table(ws, summary, header_row=4, autofilter=False)
+        ws.column_dimensions["A"].width, ws.column_dimensions["B"].width = 30, 110
+        write_excel_title(ws, t["title"], _meta_line(out, t) + " · " + generated_stamp(), 2)
+        for r in range(5, 5 + len(summary)):
+            ws.cell(row=r, column=1).font = Font(name="Calibri", bold=True, size=10)
+            ws.cell(row=r, column=2).alignment = Alignment(wrap_text=True, vertical="center", indent=1)
+            ws.row_dimensions[r].height = 15 * math.ceil(max(1, len(str(ws.cell(row=r, column=2).value))) / 95) + 6
+        sheet_print_setup(ws, 6)
         for _, title, key, df in report_tables(out):
-            name = "".join(ch for ch in t[title] if ch not in _INVALID_SHEET_CHARS).strip()[:31]
-            while name in used:
-                name = name[:29] + "_" + str(len(used))
-            used.add(name)
-            df.to_excel(writer, sheet_name=name, index=False, startrow=3)
-            sheet = writer.sheets[name]
-            sheet["A1"] = t[title]
-            sheet["A1"].font = Font(bold=True, size=12)
-            sheet["A2"] = f"{t['interp']}: {it[key]}"
-            sheet["A2"].alignment = Alignment(wrap_text=True, vertical="top")
-            sheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=max(len(df.columns), 6))
-            sheet.row_dimensions[2].height = 90
-            for cell in sheet[4]:
-                cell.font = Font(bold=True, color="FFFFFF")
-                cell.fill = PatternFill("solid", fgColor="1F2937")
-            for column in sheet.columns:
-                sheet.column_dimensions[column[3].column_letter].width = 18
+            df = clean_table(df)
+            name = safe_sheet_name(t[title], used)
+            # header goes below title + interpretation; reserve 4 rows, the table starts at row 5
+            df.to_excel(writer, sheet_name=name, index=False, startrow=4)
+            ws = writer.sheets[name]
+            style_excel_table(ws, df, header_row=5)
+            write_excel_title(ws, t[title], f"{t['interp']}: {it[key]}" if key in it else None, max(len(df.columns), 6))
+            ws.print_title_rows = "5:5"
+            sheet_print_setup(ws, 6)
+    return path
+
+
+# --------------------------------------------------------------------------------- DOCX
+
+
+def generate_ml_docx(out: dict[str, Any], path: Path, engine: str | None = None, figures: dict[str, bytes] | None = None) -> Path:
+    """Word version of the PDF report: same CRISP-DM order, styled tables, interpretations and (optionally) the HD charts."""
+    from docx.shared import Pt, RGBColor
+
+    t = L.get(out.get("language", "es"), L["es"])
+    path.parent.mkdir(parents=True, exist_ok=True)
+    it = out["interpretations"]
+    doc = new_document(landscape=True)
+    styles = doc.styles
+    for lvl, size in ((1, 16), (2, 13), (3, 11.5)):
+        styles[f"Heading {lvl}"].font.size = Pt(size)
+        styles[f"Heading {lvl}"].font.name = "Calibri"
+
+    def interpretation(key: str | None) -> None:
+        if not key or key not in it:
+            return
+        p = doc.add_paragraph()
+        p.paragraph_format.space_before, p.paragraph_format.space_after = Pt(4), Pt(10)
+        lead = p.add_run(f"{t['interp']}: ")
+        lead.bold = True
+        lead.font.color.rgb = RGBColor.from_string("1E3A8A")
+        body = p.add_run(it[key])
+        body.font.color.rgb = RGBColor.from_string("374151")
+        body.font.size = Pt(10)
+
+    title = doc.add_heading(t["title"], level=0)
+    for r in title.runs:
+        r.font.color.rgb = RGBColor.from_string("2563EB")
+        r.font.name = "Calibri"
+    add_docx_title(doc, _meta_line(out, t, engine), generated_stamp(), level=3)
+    add_docx_title(doc, t["p1"], level=1)
+    add_docx_table(doc, pd.DataFrame(_summary_rows(out, t), columns=["CRISP-DM", t["value"]]))
+    phase = "p1"
+    for ph, ttl, key, df in report_tables(out):
+        if ph != phase:
+            doc.add_page_break()
+            add_docx_title(doc, t[ph], level=1)
+            phase = ph
+        add_docx_title(doc, t[ttl], level=2)
+        add_docx_table(doc, df)
+        interpretation(key)
+    best = out["best_model"]
+    (tn, fp), (fn, tp) = best["metrics"]["confusion_matrix"]
+    doc.add_page_break()
+    add_docx_title(doc, t["p6"], level=1)
+    add_docx_title(doc, t["cm"], level=2)
+    add_docx_table(doc, pd.DataFrame([[f"{t['real']} 0", tn, fp], [f"{t['real']} 1", fn, tp]],
+                                     columns=[" ", f"{t['pred']} 0", f"{t['pred']} 1"]))
+    interpretation("confusion_matrix")
+    add_docx_title(doc, f"{t['best']}: {best['name']} ({t[best['type']]}) · final_score {best['final_score']:.4f}", level=2)
+    p = doc.add_paragraph()
+    p.add_run(f"{t['why']} ").bold = True
+    p.add_run(out["selection_reason"])
+    if out.get("analysis_source") == "llm":
+        p = doc.add_paragraph()
+        p.add_run(f"{t['llm']}: ").bold = True
+        p.add_run(out["analysis"])
+    doc.add_paragraph(f"{t['artifact']}: {best['artifact_path']}").runs[0].font.size = Pt(8)
+    if figures:
+        doc.add_page_break()
+        add_docx_title(doc, t["annex"], level=1)
+        width = usable_width(doc.sections[-1])
+        for i, (name, png) in enumerate(figures.items()):
+            add_docx_title(doc, name.replace("_", " "), level=3)
+            doc.add_picture(io.BytesIO(png), width=int(width * 0.78))
+            doc.paragraphs[-1].alignment = 1  # centered
+            if i % 2 == 1 and i < len(figures) - 1:
+                doc.add_page_break()
+    doc.core_properties.title = t["title"]
+    doc.save(str(path))
     return path
