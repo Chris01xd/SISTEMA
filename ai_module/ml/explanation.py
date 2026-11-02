@@ -8,6 +8,7 @@ the results; otherwise the deterministic text is used. The LLM never changes
 from __future__ import annotations
 
 import json
+import time
 from typing import Any
 
 from ai_module.config.settings import AISettings
@@ -113,6 +114,24 @@ def _llm_payload(best: dict[str, Any], comparison: dict[str, Any], cross_ref: di
     }
 
 
+LLM_RETRY_WAITS_S = (4, 10, 20)  # extra attempts on provider overload (e.g. Gemini 503 "high demand"), on top of the SDK's own retries
+_TRANSIENT_MARKERS = ("429", "500", "502", "503", "504", "unavailable", "overloaded", "high demand", "resource_exhausted",
+                      "rate limit", "ratelimit", "timeout", "timed out", "temporarily", "connection")
+
+
+def _is_transient(exc: Exception) -> bool:
+    text = f"{type(exc).__name__} {exc}".lower()
+    return any(m in text for m in _TRANSIENT_MARKERS)
+
+
+def _describe_llm_error(exc: Exception) -> str:
+    """Class name plus HTTP status when there is one (never the raw message, which may echo request data)."""
+    code = getattr(exc, "code", None) or getattr(exc, "status_code", None)
+    status = getattr(exc, "status", None)
+    detail = " ".join(str(x) for x in (code, status) if isinstance(x, (int, str)) and str(x))
+    return f"{type(exc).__name__}: {detail}" if detail else type(exc).__name__
+
+
 def llm_analysis(best: dict[str, Any], comparison: dict[str, Any], cross_ref: dict[str, Any], cfg: dict[str, Any],
                  ai_settings: AISettings, language: str = "es", model: Any = None) -> tuple[str | None, str | None]:
     """Returns (text, problem). ``text`` is None when the LLM is unavailable or its answer
@@ -125,11 +144,19 @@ def llm_analysis(best: dict[str, Any], comparison: dict[str, Any], cross_ref: di
         return None, str(exc)
     payload = _llm_payload(best, comparison, cross_ref, cfg, language)
     ml_log("LLM", "Generating explanation of the selected model", run_id=cfg.get("run_id"))
-    try:
-        reply = chat.invoke([("system", load_prompt_text("ml_explainer_system")), ("human", json.dumps(payload, ensure_ascii=False, default=str))])
-        text = (reply.text if hasattr(reply, "text") else str(reply.content)).strip()
-    except Exception as exc:  # provider errors of any type
-        return None, f"LLM request failed ({type(exc).__name__})"
+    messages = [("system", load_prompt_text("ml_explainer_system")), ("human", json.dumps(payload, ensure_ascii=False, default=str))]
+    for attempt, wait in enumerate((*LLM_RETRY_WAITS_S, None)):
+        try:
+            reply = chat.invoke(messages)
+            content = reply.text if hasattr(reply, "text") else reply.content
+            text = (content() if callable(content) else content if isinstance(content, str) else str(content)).strip()
+            break
+        except Exception as exc:  # provider errors of any type
+            if wait is None or not _is_transient(exc):
+                return None, f"LLM request failed ({_describe_llm_error(exc)})"
+            ml_log("LLM", f"Transient provider error ({_describe_llm_error(exc)}), retrying in {wait}s",
+                   run_id=cfg.get("run_id"), attempt=attempt + 1)
+            time.sleep(wait)
     if best["name"].lower() not in text.lower():
         return None, "LLM explanation discarded: it did not name the selected model"
     missing = ungrounded_numbers([text], payload)

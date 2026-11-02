@@ -67,6 +67,19 @@ The final chat message is the analysis JSON consumed by
 pipeline without a provider call. The `/ml` frontend page uses the backend,
 so the Langflow API key stays on the backend.
 
+## From the Streamlit app (page 9)
+
+`streamlit_app/pages/9_LangFlow.py` checks the whole chain (server up, API key
+accepted, flow imported) and can fix it itself: **Iniciar servidor LangFlow** runs
+`scripts/start_langflow.ps1` in the background (log in `.langflow/streamlit_server.log`),
+and **Importar / actualizar flujo** runs `scripts/import_flow.py`, creating a new API key
+when the stored one is rejected. The run form exposes dataset, CV folds, language and the
+LLM switch. Results stay on screen across reruns, with charts, tables, report export and
+a side-by-side check against the direct engine (identical `final_score` values).
+
+If the LLM provider is overloaded (e.g. Gemini `503 UNAVAILABLE`), `ai_module.ml.explanation`
+retries three more times (4 s, 10 s, 20 s) before falling back to the deterministic explanation.
+
 ## Without a Langflow server
 
 Set `ML_ANALYSIS_MODE=direct` in `backend/.env` and restart the backend to run
